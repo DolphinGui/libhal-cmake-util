@@ -246,7 +246,6 @@ function(libhal_build_demos)
                  "libhal-$ENV{LIBHAL_PLATFORM}")
 
   find_package(libhal-$ENV{LIBHAL_PLATFORM_LIBRARY} REQUIRED)
-  find_package(prebuilt-picolibc REQUIRED)
 
   foreach(PACKAGE ${DEMO_ARGS_PACKAGES})
     find_package(${PACKAGE} REQUIRED)
@@ -273,7 +272,6 @@ function(libhal_build_demos)
     -fno-rtti
   )
   target_link_libraries(startup_code PRIVATE
-    picolibc
     ${DEMO_ARGS_LINK_LIBRARIES}
     libhal::$ENV{LIBHAL_PLATFORM_LIBRARY}
   )
@@ -299,7 +297,6 @@ function(libhal_build_demos)
     )
     target_link_libraries(${elf} PRIVATE
       startup_code
-      picolibc
       ${DEMO_ARGS_LINK_LIBRARIES}
       libhal::$ENV{LIBHAL_PLATFORM_LIBRARY}
     )
